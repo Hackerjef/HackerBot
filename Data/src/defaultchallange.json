@@ -1,0 +1,21 @@
+{
+    "set": {
+        "mapname": "Default",
+        "challangenumber": {
+            "number": "0",
+            "url": "https://cdn-images-1.medium.com/max/2000/1*4mYgGvtkKmQQP6vdDObq5g.png"
+        },
+        "Hexcolor": "ef0f0b",
+        "discription": "none",
+        "rules": "none",
+        "restrictions": "none",
+        "game": "none",
+        "maxplayers": "0",
+        "user": {
+            "Discordname": "Noone",
+            "Discordpic": "https://cdn.discordapp.com/embed/avatars/0.png"
+        },
+        "mapimage": "https://raw.githubusercontent.com/Hackerjef/hackerjef.github.io/master/Downloads/invisible.png",
+        "extraimage": "https://raw.githubusercontent.com/Hackerjef/hackerjef.github.io/master/Downloads/invisible.png"
+    }
+}

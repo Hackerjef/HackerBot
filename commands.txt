@@ -1,0 +1,34 @@
+/not done
+?setuser <userid>
+?help
+?shutdown
+?restart
+?tellrowboatfuckoff
+
+//done
+?setextraimage <png/jpeg/gif>
+?setmapimage <png/jpeg/gif>
+?setchallangenumber <1-20>
+?setplayers <args>
+?setrestrictions <args>
+?setgame <args>
+?setrules
+?setchallangedescription
+?setmapname
+?setcolor
+?reset 
+?preview 
+?defaultchallange
+?userchallange
+
+//broken
+?setbotstatus (notworking)
+
+
+
+note: extraimage,mapimage if blank do (invisible.png)
+^all png/jpeg are in directlinkform (ends in .png .jpeg .gif)
+
+exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange) => {
+
+};
