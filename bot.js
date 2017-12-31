@@ -1,3 +1,7 @@
+//require stufs
+const proxyfn = require('ponyfill-array-find');
+
+
 //data storage for bot stuff
 const Scriptpath = __dirname;
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
@@ -5,6 +9,7 @@ const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
 //set/get configs
 let config = require("./Data/config.json");
+let perms = require("./Data/perms.json");
 
 // check if setup was compleate
 if (config.donesetup == "no") {
@@ -98,19 +103,32 @@ client.on("message", (message) => {
   // if bot is the sender (Botception)
 
   if (!message.content.startsWith(config.prefix) || message.author.bot) return;
+
+  //get args n stuffs
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   const rawargs = message.content;
   var remove = config.prefix + command + " ";
   const rawargs2 = rawargs.replace(remove, "");
+
+  //check of command file exists and lazy way of doing a 404
+  let xD404 = require("./Data/src/404.js");
+
+  //check for perm access
+  let permaccess = 0
+    //perm 0 = not set
+    // perm 1 = no access
+    //perm 2 = access
+  //check to see if user is in allow/deny arrays
+  
+  //run command
   try {
     let commandFile = require(`./Data/commands/${command}.js`);
     commandFile.run(Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange);
   } catch (err) {
     //command error
     console.error(err);
-    let commandfile = require("./Data/src/404.js");
-    commandfile.run(client, message, err);
+    xD404.run(client, message, err);
   }
 });
 client.login(config.discordtoken);

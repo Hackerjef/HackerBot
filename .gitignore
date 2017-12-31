@@ -1,1 +1,4 @@
 node_modules
+.vs
+Data/config.json
+config.json

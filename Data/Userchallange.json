@@ -1,21 +1,21 @@
 {
 	"set": {
+		"mapname": "Default",
 		"challangenumber": {
-			"number": 3,
-			"url": "https://vignette.wikia.nocookie.net/steven-universe/images/7/77/Pepe_emote.png"
+			"number": "0",
+			"url": "https://cdn-images-1.medium.com/max/2000/1*4mYgGvtkKmQQP6vdDObq5g.png"
 		},
-		"Hexcolor": "#7390ff",
-		"discription": "lol xD",
-		"rules": "xddddddddddddd",
-		"restrictions": "lolololol",
-		"game": "Weenie Hut Junior",
-		"maxplayers": "15",
+		"Hexcolor": "ef0f0b",
+		"discription": "none",
+		"rules": "none",
+		"restrictions": "none",
+		"game": "none",
+		"maxplayers": "0",
 		"user": {
 			"Discordname": "Noone",
 			"Discordpic": "https://cdn.discordapp.com/embed/avatars/0.png"
 		},
-		"mapimage": "https://i.imgur.com/B3j5Fj4.jpg",
-		"extraimage": "https://68.media.tumblr.com/b09bc2e53c4aae6ca75c2ba680867433/tumblr_nl8gs4pFbT1upgyyio1_1280.jpg",
-		"mapname": "Mob of The Dead"
+		"mapimage": "https://raw.githubusercontent.com/Hackerjef/hackerjef.github.io/master/Downloads/invisible.png",
+		"extraimage": "https://raw.githubusercontent.com/Hackerjef/hackerjef.github.io/master/Downloads/invisible.png"
 	}
 }
