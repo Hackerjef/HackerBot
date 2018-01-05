@@ -1,7 +1,3 @@
-//require stufs
-const proxyfn = require('ponyfill-array-find');
-
-
 //data storage for bot stuff
 const Scriptpath = __dirname;
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
@@ -9,7 +5,6 @@ const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
 //set/get configs
 let config = require("./Data/config.json");
-let perms = require("./Data/perms.json");
 
 // check if setup was compleate
 if (config.donesetup == "no") {
@@ -120,7 +115,7 @@ client.on("message", (message) => {
     // perm 1 = no access
     //perm 2 = access
   //check to see if user is in allow/deny arrays
-  
+
   //run command
   try {
     let commandFile = require(`./Data/commands/${command}.js`);

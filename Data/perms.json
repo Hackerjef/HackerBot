@@ -1,10 +1,9 @@
 {
     "groupperm": {
-        "no role": {
+        "norole": {
                 "immunity": "0",
                 "name": "no role",
                 "commands": [
-
                 ]
             },
         "394301127115538442": {
