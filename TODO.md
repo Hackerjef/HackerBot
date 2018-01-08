@@ -1,4 +1,4 @@
-1. Finnish geting user for embededs
+1. Finnish geting user for embededs    - DONE LOL
 2. add help command with stuffs for commands
 3. work on perm system
 4. link challange numbers to a local image https://stackoverflow.com/questions/46734519/how-to-use-local-file-as-thumbnail-in-discordjs-embedded-message

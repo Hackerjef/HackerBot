@@ -66,8 +66,8 @@ exports.maxplayers = (file, ver) => {
 exports.user = (file, Discordname, Discordpic) => {
   const updateJsonFile = require("update-json-file");
   updateJsonFile(file, (data) => {
-    data.user.Discordname = Discordname;
-    data.user.Discordpic = Discordpic;
+    data.set.user.Discordname = Discordname;
+    data.set.user.Discordpic = Discordpic;
     return data;
   });
 };
