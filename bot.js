@@ -62,8 +62,8 @@ function searchCache(moduleName, callback) {
     }(mod));
   }
 }
-// end of script from stack overflow https://stackoverflow.com/questions/9210542/node-js-require-cache-possible-to-invalidate
 
+// end of script from stack overflow https://stackoverflow.com/questions/9210542/node-js-require-cache-possible-to-invalidate
 
 //timer stuff
 const Timer = require("timer.js");
@@ -72,9 +72,16 @@ var myTimer = new Timer({
 });
 
 //functions for writing to user chalange
-const writechallange = require("./Data/src/writechallange.js")
+const writechallange = require("./Data/src/writechallange.js");
 
-
+var setgamepresence = function(game) {
+  const updateJsonFile = require("update-json-file");
+  updateJsonFile("./Data/config.json", (data) => {
+    data.currentgame = game;
+    return data;
+  });
+  client.user.setPresence({ game: { name: game, type: 0 } });
+}
 //main bot lol i want to die
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -86,7 +93,7 @@ fs.readdir("./Data/src/Events/", (err, files) => {
     let eventFunction = require(`./Data/src/Events/${file}`);
     let eventName = file.split(".")[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    client.on(eventName, (...args) => eventFunction.run(Discord, client, config, ...args));
+    client.on(eventName, (...args) => eventFunction.run(Discord, client, config, UserChallangejson, ...args));
   });
 });
 
@@ -139,7 +146,7 @@ client.on("message", (message) => {
   //run command
   try {
     let commandFile = require(`./Data/commands/${command}.js`);
-    commandFile.run(Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath);
+    commandFile.run(Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath, setgamepresence);
   } catch (err) {
     //command error
     console.error(err);
