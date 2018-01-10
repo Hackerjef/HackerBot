@@ -5,6 +5,7 @@ const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
 //set/get configs
 let config = require("./Data/config.json");
+let perms = require("./Data/perms.json");
 
 // check if setup was compleate
 if (config.donesetup == "no") {
@@ -91,6 +92,25 @@ client.on("resume", () => {
   console.log("Discordjs resumed connection to websocket");
 });
 
+//0 = noperm
+//1 = allow perm
+const permvalidator = function(authorid, command) {
+  if (perms.users_banperm.indexOf(authorid) === -1) return 0;
+  if (perms.users_fullperm.indexOf(authorid) === 0) return 1;
+  if (perms.globalcommands.indexOf(command) === -1) return 1;
+  //groups
+
+  //challange writers group
+  var groupperm = 0;
+  if (message.member.roles.has("394301127115538442")) {
+    if (perms.groupperm.ChallengeWriters.indexOf(command) === -1) groupperm = 1;
+  }
+  if (groupperm == 1) return 1;
+
+  //if everything else fails
+  return 0;
+}
+
 client.on("message", (message) => {
   // Exit and stop if it's not there
   if (!message.content.startsWith(config.prefix)) return;
@@ -107,20 +127,16 @@ client.on("message", (message) => {
   var remove = config.prefix + command + " ";
   const rawargs2 = rawargs.replace(remove, "");
 
+  //permstuff
+  if (permvalidator(message.author.id, command) == 0) return;
+
   //check of command file exists and lazy way of doing a 404
   let xD404 = require("./Data/src/404.js");
-
-  //check for perm access
-  let permaccess = 0
-    //perm 0 = not set
-    // perm 1 = no access
-    //perm 2 = access
-  //check to see if user is in allow/deny arrays
 
   //run command
   try {
     let commandFile = require(`./Data/commands/${command}.js`);
-    commandFile.run(Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange);
+    commandFile.run(Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath);
   } catch (err) {
     //command error
     console.error(err);

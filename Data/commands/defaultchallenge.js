@@ -1,7 +1,7 @@
 exports.run = (Discord, client, message, args, DefaultChallangejson) => {
   const embed = new Discord.RichEmbed()
     .setTitle("__Map Name__ » " + DefaultChallangejson.set.mapname)
-    .setAuthor("Challange Number " + DefaultChallangejson.set.challangenumber.number, DefaultChallangejson.set.challangenumber.url)
+    .setAuthor("Challange Number " + DefaultChallangejson.set.challangenumber.number, DefaultChallangejson.set.challangenumber.filename)
     .setColor(DefaultChallangejson.set.Hexcolor)
     .setDescription(DefaultChallangejson.set.discription)
     .setFooter("Challenge By " + DefaultChallangejson.set.user.Discordname, DefaultChallangejson.set.user.Discordpic)

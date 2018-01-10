@@ -1,13 +1,6 @@
 {
     "groupperm": {
-        "norole": {
-                "immunity": "0",
-                "name": "no role",
-                "commands": [
-                ]
-            },
         "394301127115538442": {
-                "immunity": "50",
                 "name": "Challenge Writers",
                 "commands": [
                     "defaultchallange",
@@ -27,6 +20,8 @@
                 ]
             }
     },
+    "groups": ["394301127115538442"],
+    "globalcommands": ["dab"],
     "users_fullperm": ["142721776458137600", "104376018222972928"],
-    "users_noperm": []
+    "users_banperm": []
 }

@@ -2,8 +2,8 @@
 	"set": {
 		"mapname": "Default",
 		"challangenumber": {
-			"number": 2,
-			"url": "https://vignette.wikia.nocookie.net/steven-universe/images/7/77/Pepe_emote.png"
+			"number": 1,
+			"filename": "1.png"
 		},
 		"Hexcolor": "ef0f0b",
 		"discription": "none",

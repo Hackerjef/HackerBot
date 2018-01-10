@@ -6,11 +6,11 @@ exports.mapname = (file, ver) => {
   });
 };
 
-exports.challangenumber = (file, number, url) => {
+exports.challangenumber = (file, number, filename) => {
   const updateJsonFile = require("update-json-file");
   updateJsonFile(file, (data) => {
     data.set.challangenumber.number = number;
-    data.set.challangenumber.url = url;
+    data.set.challangenumber.filename = filename;
     return data;
   });
 };

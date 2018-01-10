@@ -1,9 +1,10 @@
-/not done
-?setuser <userid>
+//not done
 ?help
 ?shutdown
 ?restart
 ?tellrowboatfuckoff
+?setbotstatus
+?preview 
 
 //done
 ?setextraimage <png/jpeg/gif>
@@ -17,13 +18,13 @@
 ?setmapname
 ?setcolor
 ?reset 
-?preview 
 ?defaultchallange
 ?userchallange
+?setuser <userid>
 
 //broken
 ?setbotstatus (notworking)
-
+?preview 
 
 
 note: extraimage,mapimage if blank do (invisible.png)
