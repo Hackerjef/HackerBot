@@ -1,7 +1,6 @@
 {
     "groupperm": {
-        "394301127115538442": {
-                "name": "Challenge Writers",
+        "ChallengeWriters": {
                 "commands": [
                     "defaultchallange",
                     "resetuserchallange",
@@ -20,7 +19,6 @@
                 ]
             }
     },
-    "groups": ["394301127115538442"],
     "globalcommands": ["dab"],
     "users_fullperm": ["142721776458137600", "104376018222972928"],
     "users_banperm": []
