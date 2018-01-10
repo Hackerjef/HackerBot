@@ -4,20 +4,6 @@ const Scriptpath = __dirname;
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
 const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
-//bot events
-var events = require("events");
-var bot = new events.EventEmitter();
-fs.readdir("./Data/src/Events/Bot/", (err, files) => {
-  if (err) return console.error(err);
-  files.forEach(file => {
-    let eventFunction = require(`./Data/src/Events/Bot/${file}`);
-    let eventName = file.split(".")[0];
-    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    bot.on(eventName, (...args) => eventFunction.run(Discord, client, ...args));
-  });
-});
-
-
 //set/get configs
 let config = require("./Data/config.json");
 let perms = require("./Data/perms.json");
@@ -94,10 +80,10 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 //events for Discord
-fs.readdir("./Data/src/Events/Discord/", (err, files) => {
+fs.readdir("./Data/src/Events/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
-    let eventFunction = require(`./Data/src/Events/Discord/${file}`);
+    let eventFunction = require(`./Data/src/Events/${file}`);
     let eventName = file.split(".")[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
     client.on(eventName, (...args) => eventFunction.run(Discord, client, config, ...args));
