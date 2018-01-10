@@ -1,7 +1,22 @@
 //data storage for bot stuff
+const fs = require("fs");
 const Scriptpath = __dirname;
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
 const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
+
+//bot events
+var events = require("events");
+var bot = new events.EventEmitter();
+fs.readdir("./Data/src/Events/Bot/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    let eventFunction = require(`./Data/src/Events/Bot/${file}`);
+    let eventName = file.split(".")[0];
+    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
+    bot.on(eventName, (...args) => eventFunction.run(Discord, client, ...args));
+  });
+});
+
 
 //set/get configs
 let config = require("./Data/config.json");
@@ -78,38 +93,40 @@ const writechallange = require("./Data/src/writechallange.js")
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-
-client.on("ready", () => {
-  client.user.setPresence({ game: { name: config.currentgame, type: 0 } });
-  console.log("Discord bot starting version: " + Discord.version);
-});
-
-client.on("reconnecting", () => {
-  console.error("Discordjs lost connection to websocket");
-});
-
-client.on("resume", () => {
-  console.log("Discordjs resumed connection to websocket");
+//events for Discord
+fs.readdir("./Data/src/Events/Discord/", (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    let eventFunction = require(`./Data/src/Events/Discord/${file}`);
+    let eventName = file.split(".")[0];
+    // super-secret recipe to call events with all their proper arguments *after* the `client` var.
+    client.on(eventName, (...args) => eventFunction.run(Discord, client, config, ...args));
+  });
 });
 
 //0 = noperm
 //1 = allow perm
-const permvalidator = function(authorid, command) {
-  if (perms.users_banperm.indexOf(authorid) === -1) return 0;
+const permvalidator = function(perms, message, authorid, command) {
+  //check if command is disabled
+  if (perms.disabledcommands.indexOf(command) === 0) return 0;
+  //check if user is banned
+  if (perms.users_banperm.indexOf(authorid) === 0) return 0;
+  //check if user has full perm
   if (perms.users_fullperm.indexOf(authorid) === 0) return 1;
-  if (perms.globalcommands.indexOf(command) === -1) return 1;
-  //groups
+  //check if command is allowed globaly
+  if (perms.globalcommands.indexOf(command) === 0) return 1;
+  //group perms
 
   //challange writers group
   var groupperm = 0;
-  if (message.member.roles.has("394301127115538442")) {
-    if (perms.groupperm.ChallengeWriters.indexOf(command) === -1) groupperm = 1;
+  if (message.member.roles.has(perms.groupperm.ChallengeWriters.id)) {
+    if (perms.groupperm.ChallengeWriters.indexOf(command) === 0) groupperm = 1;
   }
   if (groupperm == 1) return 1;
 
   //if everything else fails
   return 0;
-}
+};
 
 client.on("message", (message) => {
   // Exit and stop if it's not there
@@ -128,7 +145,7 @@ client.on("message", (message) => {
   const rawargs2 = rawargs.replace(remove, "");
 
   //permstuff
-  if (permvalidator(message.author.id, command) == 0) return;
+  if (permvalidator(perms, message, message.author.id, command) == 0) return;
 
   //check of command file exists and lazy way of doing a 404
   let xD404 = require("./Data/src/404.js");
