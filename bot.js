@@ -74,6 +74,7 @@ var myTimer = new Timer({
 //functions for writing to user chalange
 const writechallange = require("./Data/src/writechallange.js");
 
+// set game status
 var setgamepresence = function(game) {
   const updateJsonFile = require("update-json-file");
   updateJsonFile("./Data/config.json", (data) => {
@@ -82,15 +83,16 @@ var setgamepresence = function(game) {
   });
   client.user.setPresence({ game: { name: game, type: 0 } });
 }
+
 //main bot lol i want to die
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
 //events for Discord
-fs.readdir("./Data/src/Events/", (err, files) => {
+fs.readdir("./Data/src/Events/Discord/", (err, files) => {
   if (err) return console.error(err);
   files.forEach(file => {
-    let eventFunction = require(`./Data/src/Events/${file}`);
+    let eventFunction = require(`./Data/src/Events/Discord/${file}`);
     let eventName = file.split(".")[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
     client.on(eventName, (...args) => eventFunction.run(Discord, client, config, UserChallangejson, ...args));
@@ -153,4 +155,5 @@ client.on("message", (message) => {
     xD404.run(client, message, err);
   }
 });
+
 client.login(config.discordtoken);
