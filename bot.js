@@ -1,21 +1,19 @@
 //console patching
-require('console-stamp')(console, { 
-  pattern: 'HH:MM:ss',
+require("console-stamp")(console, { 
+  pattern: "HH:MM:ss",
   colors: {
-    stamp: 'yellow',
-    label: 'white'
+    stamp: "yellow",
+    label: "white"
   }
 });
 
-//data storage for bot stuff
-const fs = require("fs");
-const Scriptpath = __dirname;
-const DefaultChallangejson = require("./Data/src/defaultchallange.json");
-const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
-
-//set/get configs
+//datastufs
 let config = require("./Data/config.json");
 let perms = require("./Data/perms.json");
+const Scriptpath = __dirname;
+const fs = require("fs");
+const DefaultChallangejson = require("./Data/src/defaultchallange.json");
+const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
 // check if setup was compleate
 if (config.donesetup == "no") {
@@ -91,7 +89,7 @@ var setgamepresence = function(game) {
     return data;
   });
   client.user.setPresence({ game: { name: game, type: 0 } });
-}
+};
 
 //main bot lol i want to die
 const Discord = require("discord.js");
@@ -148,7 +146,7 @@ const power = function(client, config, message, type) {
   } else {
     message.reply("power type not provided/not correct");
   }
-}
+};
 
 client.on("message", (message) => {
   // Exit and stop if it's not there
@@ -168,7 +166,6 @@ client.on("message", (message) => {
 
   //permstuff
   if (permvalidator(perms, message, message.author.id, command) == 0) return;
-
   if (command == "power") power(client, config, message, rawargs2);
   if (command == "power") return;
 
@@ -185,5 +182,4 @@ client.on("message", (message) => {
     xD404.run(client, message, err);
   }
 });
-
 client.login(config.discordtoken);

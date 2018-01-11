@@ -67,3 +67,6 @@ typings/
 
 # config data
 config.json
+
+# logs
+logs/*
