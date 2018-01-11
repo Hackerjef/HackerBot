@@ -1,3 +1,12 @@
+//console patching
+require('console-stamp')(console, { 
+  pattern: 'HH:MM:ss',
+  colors: {
+    stamp: 'yellow',
+    label: 'white'
+  }
+});
+
 //data storage for bot stuff
 const fs = require("fs");
 const Scriptpath = __dirname;
@@ -119,9 +128,27 @@ const permvalidator = function(perms, message, authorid, command) {
   }
   if (groupperm == 1) return 1;
 
-  //if everything else fails
+  //if everything else fails/ that user is like a god lol and somehow broke bot 
   return 0;
 };
+
+
+//power
+const power = function(client, config, message, type) {
+  if (type == "shutdown") {
+    message.reply("goodbye~");
+    console.log("shuting down bot~");
+    client.destroy();
+    process.exit(1);
+  } else if (type == "restart") {
+    message.reply("restarting bot~");
+    console.log("restarting bot~");
+    client.destroy();
+    client.login(config.discordtoken);
+  } else {
+    message.reply("power type not provided/not correct");
+  }
+}
 
 client.on("message", (message) => {
   // Exit and stop if it's not there
@@ -141,6 +168,9 @@ client.on("message", (message) => {
 
   //permstuff
   if (permvalidator(perms, message, message.author.id, command) == 0) return;
+
+  if (command == "power") power(client, config, message, rawargs2);
+  if (command == "power") return;
 
   //check of command file exists and lazy way of doing a 404
   let xD404 = require("./Data/src/404.js");

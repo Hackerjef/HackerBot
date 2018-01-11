@@ -11,15 +11,8 @@
   "dependencies": {
     "discord.js": "^11.2.1",
     "edit-json-file": "^1.0.8",
-    "eslinter": "^3.2.1",
-    "file-exists": "^5.0.0",
-    "node-json-db": "^0.7.3",
-    "ponyfill-array-find": "^1.0.1",
-    "request": "^2.83.0",
     "timer.js": "^1.0.4",
     "update-json-file": "^1.1.1",
-    "validate.io-color-hexadecimal": "^1.0.0",
-    "vorpal": "^1.12.0",
     "zlib-sync": "^0.1.4"
   }
 }
