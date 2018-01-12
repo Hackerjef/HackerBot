@@ -1,11 +1,4 @@
-//console patching
-require("console-stamp")(console, { 
-  pattern: "HH:MM:ss",
-  colors: {
-    stamp: "yellow",
-    label: "white"
-  }
-});
+
 
 //datastufs
 let config = require("./Data/config.json");
@@ -125,7 +118,6 @@ const permvalidator = function(perms, message, authorid, command) {
     if (perms.groupperm.ChallengeWriters.indexOf(command) === 0) groupperm = 1;
   }
   if (groupperm == 1) return 1;
-
   //if everything else fails/ that user is like a god lol and somehow broke bot 
   return 0;
 };
