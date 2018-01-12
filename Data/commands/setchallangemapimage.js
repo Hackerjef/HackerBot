@@ -22,3 +22,10 @@ exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallan
     }
   });
 };
+
+exports.help = () => {
+  return {
+    command: "setchallangemapimage <picture url>",
+    description: "sets map image",
+  };
+};

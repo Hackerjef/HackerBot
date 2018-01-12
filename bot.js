@@ -115,7 +115,7 @@ const permvalidator = function(perms, message, authorid, command) {
   //challange writers group
   var groupperm = 0;
   if (message.member.roles.has(perms.groupperm.ChallengeWriters.id)) {
-    if (perms.groupperm.ChallengeWriters.indexOf(command) === 0) groupperm = 1;
+    if (perms.groupperm.ChallengeWriters.commands.indexOf(command) === 0) groupperm = 1;
   }
   if (groupperm == 1) return 1;
   //if everything else fails/ that user is like a god lol and somehow broke bot 
