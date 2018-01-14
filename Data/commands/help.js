@@ -19,7 +19,6 @@ exports.run = (Discord, client, message, rawargs2, DefaultChallangejson, UserCha
     //todo: add command w/ all return data to global helpjson
     // sample json: name > nameveriable description args
   }
-
   //todo: make embeded outputing helpjson
 };
 

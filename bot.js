@@ -1,5 +1,3 @@
-
-
 //datastufs
 let config = require("./Data/config.json");
 let perms = require("./Data/perms.json");
@@ -62,7 +60,6 @@ function searchCache(moduleName, callback) {
     }(mod));
   }
 }
-
 // end of script from stack overflow https://stackoverflow.com/questions/9210542/node-js-require-cache-possible-to-invalidate
 
 //timer stuff
@@ -118,6 +115,7 @@ const permvalidator = function(perms, message, authorid, command) {
     if (perms.groupperm.ChallengeWriters.commands.indexOf(command) === 0) groupperm = 1;
   }
   if (groupperm == 1) return 1;
+  
   //if everything else fails/ that user is like a god lol and somehow broke bot 
   return 0;
 };
