@@ -1,5 +1,6 @@
 exports.run = (Discord, client, message) => {
-  message.reply("The uptime is: `" + client.uptime + "`");
+  var prettyMs = require("pretty-ms");
+  message.reply("The uptime is: `" + prettyMs(client.uptime) + "`");
 };
 
 exports.help = () => {

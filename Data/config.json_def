@@ -2,5 +2,6 @@
   "donesetup": "yes",
   "discordtoken": "----",
   "prefix": "?",
-  "currentgame": "this program took 10 years to make"
+  "currentgame": "this program took 10 years to make",
+  "updatestartup": "yes"
 }

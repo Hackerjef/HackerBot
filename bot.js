@@ -1,3 +1,12 @@
+//console porn
+require("console-stamp")(console, {
+  colors: {
+    stamp: "yellow",
+    label: "white"
+  }
+});
+
+
 //datastufs
 let config = require("./Data/config.json");
 let perms = require("./Data/perms.json");
@@ -68,6 +77,14 @@ var myTimer = new Timer({
   tick: 1,
 });
 
+//clean command
+function clean(text) {
+  if (typeof (text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+  else
+    return text;
+}
+
 //functions for writing to user chalange
 const writechallange = require("./Data/src/writechallange.js");
 
@@ -130,7 +147,7 @@ const power = function(client, config, message, type) {
     process.exit(1);
   } else if (type == "restart") {
     message.reply("restarting bot~");
-    console.log("restarting bot~");
+    console.info("restarting bot~");
     client.destroy();
     client.login(config.discordtoken);
   } else {
@@ -154,10 +171,27 @@ client.on("message", (message) => {
   var remove = config.prefix + command + " ";
   const rawargs2 = rawargs.replace(remove, "");
 
+  //log in console about command
+  console.warn("'" + message +  "' was use by " + message.author.username);
+
   //permstuff
   if (permvalidator(perms, message, message.author.id, command) == 0) return;
   if (command == "power") power(client, config, message, rawargs2);
   if (command == "power") return;
+
+  //eval command from anidiotsguide
+  if (message.content.startsWith(config.prefix + "eval")) {
+    try {
+      const code = args.join(" ");
+      let evaled = eval(code);
+      if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+      message.channel.send(clean(evaled), { code: "xl" });
+    } catch (err) {
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
+  }
+  if (message.content.startsWith(config.prefix + "eval")) return;
 
   //check of command file exists and lazy way of doing a 404
   let xD404 = require("./Data/src/404.js");
