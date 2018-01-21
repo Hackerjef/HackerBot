@@ -172,4 +172,5 @@ client.on("message", (message) => {
     xD404.run(client, message, err);
   }
 });
+
 client.login(config.discordtoken);

@@ -9,7 +9,7 @@
   "author": "hackerjef",
   "license": "UNLICENSED",
   "dependencies": {
-    "discord.js": "^11.2.1",
+    "discord.js": "^11.3.0",
     "edit-json-file": "^1.0.8",
     "timer.js": "^1.0.4",
     "update-json-file": "^1.1.1",
