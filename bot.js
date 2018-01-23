@@ -140,7 +140,12 @@ const permvalidator = function(perms, message, authorid, command) {
 
 //power
 const power = function(client, config, message, type) {
-  if (type == "shutdown") {
+  if (type == "shutdownforce") {
+    client.destory();
+    process.exit();
+  } else if (type == "restartforce") {
+    process.exit(21);
+  } else if (type == "shutdown") {
     message.reply("goodbye~");
     console.log("shuting down bot~");
     client.destroy();
@@ -159,6 +164,18 @@ const power = function(client, config, message, type) {
     message.reply("power type not provided/not correct");
   }
 };
+process.on("exit", function () {
+  process.stdin.resume();
+  power("", "", "", "shutdownforce");
+});
+process.on("SIGINT", function () {
+  process.stdin.resume();
+  power("", "", "", "shutdownforce");
+});
+process.on("uncaughtException", function () {
+  process.stdin.resume();
+  power("", "", "", "restartforce");
+});
 
 client.on("message", (message) => {
   // Exit and stop if it's not there
