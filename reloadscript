@@ -1,5 +1,0 @@
-#! /usr/bin/sh
-git pull origin master
-npm install
-node bot.js
-bash reloadscript

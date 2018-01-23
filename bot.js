@@ -144,12 +144,17 @@ const power = function(client, config, message, type) {
     message.reply("goodbye~");
     console.log("shuting down bot~");
     client.destroy();
-    process.exit(1);
+    process.exit(20);
   } else if (type == "restart") {
     message.reply("restarting bot~");
     console.info("restarting bot~");
     client.destroy();
-    client.login(config.discordtoken);
+    process.exit(21);
+  } else if (type == "update") {
+    message.reply("updating bot");
+    console.info("updating bot~");
+    client.destroy();
+    process.exit(22);
   } else {
     message.reply("power type not provided/not correct");
   }
