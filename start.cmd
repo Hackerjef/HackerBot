@@ -15,11 +15,11 @@ echo if you error out at npm zlib-sync Please install python!
 rmdir /s /q node_modules
 git pull origin master 
 npm install
-goto :start
+goto start
 
 :install
 git pull origin master
 npm install
 echo Remember to change your cfgs
 pause
-goto :start
+goto start

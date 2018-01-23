@@ -164,10 +164,6 @@ const power = function(client, config, message, type) {
     message.reply("power type not provided/not correct");
   }
 };
-process.on("exit", function () {
-  process.stdin.resume();
-  power("", "", "", "shutdownforce");
-});
 process.on("SIGINT", function () {
   process.stdin.resume();
   power("", "", "", "shutdownforce");
