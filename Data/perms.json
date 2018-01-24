@@ -6,6 +6,7 @@
     "globalcommands": ["fixit"],
     "permgroups": {
         "groupsconfigured": "1",
+        "group1": {
             "id": "groupid",
             "commands": ["help"]
         },
