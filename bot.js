@@ -10,7 +10,7 @@ const permjson = require("./Data/perms.json");
 const perm = require("./Data/src/Perms.js");
 
 // check if setup was compleate
-if (config.donesetup == "no") {
+if (config.donesetup == "False") {
   console.error("Setup not correct please correct kthx bai");
   console.warn("https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token");
   console.log("go into Data/config.json, set donesetup to yes and then set the token");
@@ -71,14 +71,6 @@ var myTimer = new Timer({
   tick: 1,
 });
 
-//clean command
-function clean(text) {
-  if (typeof (text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else
-    return text;
-}
-
 //functions for writing to user chalange
 const writechallange = require("./Data/src/writechallange.js");
 
@@ -107,44 +99,15 @@ fs.readdir("./Data/src/Events/Discord/", (err, files) => {
   });
 });
 
-//power
-const power = function(client, config, message, type) {
-  if (type == "shutdownforce") {
-    client.destory();
-    process.exit(4);
-  } else if (type == "restartforce") {
-    process.exit(5);
-  } else if (type == "shutdown") {
-    message.reply("goodbye~");
-    console.log("shuting down bot~");
-    client.destroy();
-    process.exit(4);
-  } else if (type == "restart") {
-    message.reply("restarting bot~");
-    console.info("restarting bot~");
-    client.destroy();
-    process.exit(5);
-  } else if (type == "update") {
-    message.reply("updating bot");
-    console.info("updating bot~");
-    client.destroy();
-    process.exit(3);
-  } else if (type == "fever") {
-    message.channel.send("Lol not <@215525925465358336> smh");
-  } else {
-    message.reply("power type not provided/not correct");
-  }
-};
+//if killed by ctrl + c
 process.on("SIGINT", function () {
   process.stdin.resume();
-  power("", "", "", "shutdownforce");
-});
-process.on("uncaughtException", function () {
-  process.stdin.resume();
-  power("", "", "", "restartforce");
+  client.destroy();
+  process.exit(4);
 });
 
 client.on("message", (message) => {
+  let xD404 = require("./Data/src/404.js");
   // Exit and stop if it's not there
   if (!message.content.startsWith(config.prefix)) return;
 
@@ -160,29 +123,20 @@ client.on("message", (message) => {
   var remove = config.prefix + command + " ";
   const rawargs2 = rawargs.replace(remove, "");
 
-  //perms
-  if (perm.check(permjson, message, command) == 0) return; 
-
-  //eval command from anidiotsguide
-  if (message.content.startsWith(config.prefix + "eval")) {
-    try {
-      const code = args.join(" ");
-      let evaled = eval(code);
-      if (typeof evaled !== "string")
-        evaled = require("util").inspect(evaled);
-      message.channel.send(clean(evaled), { code: "xl" });
-    } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+  //check if command file exists
+  if (!fs.existsSync(`./Data/commands/${command}.js`)) {
+    message.react("❌");
+    if (message.author.id == "104376018222972928") {
+      message.channel.send("!weenie <@104376018222972928>");
     }
+    return;
   }
-  if (message.content.startsWith(config.prefix + "eval")) return;
 
-  //power sys
-  if (command == "power") power(client, config, message, rawargs2);
-  if (command == "power") return;
-
-  //check of command file exists and lazy way of doing a 404
-  let xD404 = require("./Data/src/404.js");
+  //perms
+  if (perm.check(permjson, message, command) == 0) {
+    message.react("❌");
+    return;
+  }
 
   //run command
   try {

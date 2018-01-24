@@ -2,17 +2,28 @@
     "permsenabled": "true",
     "Fullidperm": ["142721776458137600", "104376018222972928"],
     "noidperm": [],
-    "disabledcommads": ["dab"],
-    "globalcommands": ["fixit"],
+    "disabledcommads": ["preview"],
+    "globalcommands": ["fixit", "dab", "uptime"],
     "permgroups": {
-        "groupnames": ["group0", "group1"],
-        "group0": {
-            "id": "groupid",
-            "commands": ["help"]
-        },
-        "group1": {
-            "id": "groupid2",
-            "commands": ["help2"]
+        "groupnames": ["Challenge_Writers"],
+        "Challenge_Writers": {
+            "id": "394301127115538442",
+            "commands": [
+                "defaultchallange",
+                "resetuserchallange",
+                "setchallangecolor",
+                "setchallangeextraimage",
+                "setchallangegame",
+                "setchallangemapimage",
+                "setchallangemapname",
+                "setchallangeplayers",
+                "setchallangerestrictions",
+                "setchallangerules",
+                "setchallangeuser",
+                "setchallangedescriptions",
+                "setchallangenumber",
+                "userchallenge"
+            ]
         }
     }
 }

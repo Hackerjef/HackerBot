@@ -1,7 +1,7 @@
 {
-  "donesetup": "yes",
+  "donesetup": "False",
   "discordtoken": "----",
   "prefix": "?",
-  "currentgame": "this program took 10 years to make",
-  "updatestartup": "yes"
+  "currentgame": "air",
+  "updatestartup": "False"
 }

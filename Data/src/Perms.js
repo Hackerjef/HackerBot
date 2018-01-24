@@ -25,7 +25,10 @@ module.exports = {
     
     //group stuff
     //see if user is in a  group/check if command will work in said group, if not loop to next one
-
+    for (var i = 0; i < permjson.permgroups.groupnames.length; i++) {
+      var groupname = permjson.permgroups.groupnames[i];
+      if (message.member.roles.has(permjson.permgroups[groupname].id) && checkinarray(permjson.permgroups[groupname].commands, command) == 1) return 1;
+    }
     //if nothing works just block them lmao
     return 0;
   }

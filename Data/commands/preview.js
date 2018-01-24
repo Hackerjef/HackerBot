@@ -17,5 +17,10 @@ exports.run = (Discord, client, message, rawargs2, DefaultChallangejson, UserCha
     .addField("Max Players »", userchallange.set.maxplayers, true);
     //time to deleate msg 10 sec
   message.channel.send({ embed, files: [{ attachment: numberpic, name: "number.png" }] });
+  //var lstmsg = message.channel.lastMessageID;
   purgeCache(UserChallangejson);
+  //myTimer.on("end", function () {
+  //  message.channel.bulkDelete(lstmsg);
+  //});
+  //myTimer.start(4);
 };
