@@ -23,7 +23,6 @@ module.exports = {
     //check if user has full perm
     if (checkinarray(permjson.Fullidperm, message.author.id) == 1) return 1;
     
-
     //if nothing works just block them lmao
     return 0;
   }

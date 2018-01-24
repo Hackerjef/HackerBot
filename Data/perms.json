@@ -5,7 +5,7 @@
     "disabledcommads": ["dab"],
     "globalcommands": ["fixit"],
     "permgroups": {
-        "challangewriters": {
+        "name": {
             "id": "",
             "commands": []
         }
