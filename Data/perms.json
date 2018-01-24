@@ -5,9 +5,13 @@
     "disabledcommads": ["dab"],
     "globalcommands": ["fixit"],
     "permgroups": {
-        "name": {
-            "id": "",
-            "commands": []
+        "groupsconfigured": "1",
+            "id": "groupid",
+            "commands": ["help"]
+        },
+        "group2": {
+            "id": "groupid2",
+            "commands": ["help2"]
         }
     }
 }

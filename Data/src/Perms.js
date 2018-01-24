@@ -21,8 +21,20 @@ module.exports = {
     //check if command is global
     if (checkinarray(permjson.globalcommands, command) == 1) return 1;
     //check if user has full perm
-    if (checkinarray(permjson.Fullidperm, message.author.id) == 1) return 1;
+    //if (checkinarray(permjson.Fullidperm, message.author.id) == 1) return 1;
     
+    //group stuff
+    //see if user is in a  group/check if command will work in said group, if not loop to next one
+    var i;
+    var permgroupjson = permjson.permgroups;
+    for (i = 0; i < permgroupjson.groupsconfigured; i++) {
+      var groupid = permgroupjson.group[i].id;
+      var groupcommands = permgroupjson.group[i].commands;
+      console.log(groupid);
+      console.log(groupcommands);
+    }
+    
+^fix group[i] doesntwork crashes bot
     //if nothing works just block them lmao
     return 0;
   }
