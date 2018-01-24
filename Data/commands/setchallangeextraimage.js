@@ -22,10 +22,3 @@ exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallan
     }
   });
 };
-
-exports.help = () => {
-  return {
-    command: "setchallangeextraimage <pictureurl>",
-    description: "sets embeded extra picture",
-  };
-};

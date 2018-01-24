@@ -19,10 +19,3 @@ exports.run = (Discord, client, message, rawargs2, DefaultChallangejson, UserCha
   message.channel.send({ embed, files: [{ attachment: numberpic, name: "number.png" }] });
   purgeCache(UserChallangejson);
 };
-
-exports.help = () => {
-  return {
-    command: "preview",
-    description: "previews the user generated embeded",
-  };
-};

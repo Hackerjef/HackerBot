@@ -1,15 +1,5 @@
-//console porn
-require("console-stamp")(console, {
-  colors: {
-    stamp: "yellow",
-    label: "white"
-  }
-});
-
-
 //datastufs
 let config = require("./Data/config.json");
-let perms = require("./Data/perms.json");
 const Scriptpath = __dirname;
 const fs = require("fs");
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
@@ -110,56 +100,33 @@ fs.readdir("./Data/src/Events/Discord/", (err, files) => {
     let eventName = file.split(".")[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
     client.on(eventName, (...args) => eventFunction.run(Discord, client, config, UserChallangejson, ...args));
-  });
+  })
 });
-
-//0 = noperm
-//1 = allow perm
-const permvalidator = function(perms, message, authorid, command) {
-  //check if command is disabled
-  if (perms.disabledcommands.indexOf(command) === 0) return 0;
-  //check if user is banned
-  if (perms.users_banperm.indexOf(authorid) === 0) return 0;
-  //check if user has full perm
-  if (perms.users_fullperm.indexOf(authorid) === 0) return 1;
-  //check if command is allowed globaly
-  if (perms.globalcommands.indexOf(command) === 0) return 1;
-  //group perms
-
-  //challange writers group
-  var groupperm = 0;
-  if (message.member.roles.has(perms.groupperm.ChallengeWriters.id)) {
-    if (perms.groupperm.ChallengeWriters.commands.indexOf(command) === 0) groupperm = 1;
-  }
-  if (groupperm == 1) return 1;
-  
-  //if everything else fails/ that user is like a god lol and somehow broke bot 
-  return 0;
-};
-
 
 //power
 const power = function(client, config, message, type) {
   if (type == "shutdownforce") {
     client.destory();
-    process.exit();
+    process.exit(4);
   } else if (type == "restartforce") {
-    process.exit(21);
+    process.exit(5);
   } else if (type == "shutdown") {
     message.reply("goodbye~");
     console.log("shuting down bot~");
     client.destroy();
-    process.exit(20);
+    process.exit(4);
   } else if (type == "restart") {
     message.reply("restarting bot~");
     console.info("restarting bot~");
     client.destroy();
-    process.exit(21);
+    process.exit(5);
   } else if (type == "update") {
     message.reply("updating bot");
     console.info("updating bot~");
     client.destroy();
-    process.exit(22);
+    process.exit(3);
+  } else if (type == "fever") {
+    message.channel.send("Lol not <@215525925465358336> smh");
   } else {
     message.reply("power type not provided/not correct");
   }
@@ -189,14 +156,6 @@ client.on("message", (message) => {
   var remove = config.prefix + command + " ";
   const rawargs2 = rawargs.replace(remove, "");
 
-  //log in console about command
-  console.warn("'" + message +  "' was use by " + message.author.username);
-
-  //permstuff
-  if (permvalidator(perms, message, message.author.id, command) == 0) return;
-  if (command == "power") power(client, config, message, rawargs2);
-  if (command == "power") return;
-
   //eval command from anidiotsguide
   if (message.content.startsWith(config.prefix + "eval")) {
     try {
@@ -210,6 +169,10 @@ client.on("message", (message) => {
     }
   }
   if (message.content.startsWith(config.prefix + "eval")) return;
+
+  //power sys
+  if (command == "power") power(client, config, message, rawargs2);
+  if (command == "power") return;
 
   //check of command file exists and lazy way of doing a 404
   let xD404 = require("./Data/src/404.js");

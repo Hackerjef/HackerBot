@@ -7,10 +7,3 @@ exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallan
   });
   writechallange.user(UserChallangejson, usr_name, usr_pfpurl);
 };
-
-exports.help = () => {
-  return {
-    command: "setchallangeusers <@username>",
-    description: "sets user that is hosting it",
-  };
-};

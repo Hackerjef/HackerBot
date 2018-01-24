@@ -1,25 +1,13 @@
 @ECHO OFF 
-if [%1]==[update] goto :update
-IF EXIST node_modules GOTO :start
-goto install
+IF Not EXIST node_modules call Data/src/scripts/install.cmd
+if [%1]==[update] call Data/src/scripts/update.cmd
 
 :start
-TIMEOUT 4
 node bot.js
-if errorlevel 22 goto :update
-if errorlevel 21 goto :start
-exit
-
-:update
-echo if you error out at npm zlib-sync Please install python!
-rmdir /s /q node_modules
-git pull origin master 
-npm install
+echo %errorlevel%
+if errorlevel 5 goto :start
+if errorlevel 4 goto :end
+if errorlevel 3 call Data/src/scripts/update.cmd
 goto start
 
-:install
-git pull origin master
-npm install
-echo Remember to change your cfgs
-pause
-goto start
+:end

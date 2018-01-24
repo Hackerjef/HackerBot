@@ -14,10 +14,3 @@ exports.run = (Discord, client, message, args, DefaultChallangejson) => {
 
   message.channel.send({ embed });
 };
-
-exports.help = () => {
-  return {
-    command: "defaultchallenge",
-    description: "shows the default way how the challange embeded should look like",
-  };
-};

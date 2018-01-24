@@ -5,10 +5,3 @@ exports.run = (Discord, client, message, args) => {
   console.info(`The command ${args} has been reloaded`);
   message.reply(`The command ${args} has been reloaded`);
 };
-
-exports.help = () => {
-  return {
-    command: "reload <plugin>",
-    description: "reloads a plugin",
-  };
-};

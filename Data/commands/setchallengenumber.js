@@ -73,10 +73,3 @@ exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallan
     writechallange.challangenumber(UserChallangejson, number, filename);
   }
 };
-
-exports.help = () => {
-  return {
-    command: "setchallangenumber <1-20>",
-    description: "The challange number-sets number and pic",
-  };
-};
