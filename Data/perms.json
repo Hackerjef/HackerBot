@@ -1,0 +1,13 @@
+{
+    "permsenabled": "true",
+    "Fullidperm": ["142721776458137600", "104376018222972928"],
+    "noidperm": [],
+    "disabledcommads": ["dab"],
+    "globalcommands": ["fixit"],
+    "permgroups": {
+        "challangewriters": {
+            "id": "",
+            "commands": []
+        }
+    }
+}

@@ -4,7 +4,6 @@ if [%1]==[update] call Data/src/scripts/update.cmd
 
 :start
 node bot.js
-echo %errorlevel%
 if errorlevel 5 goto :start
 if errorlevel 4 goto :end
 if errorlevel 3 call Data/src/scripts/update.cmd

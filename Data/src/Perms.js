@@ -1,6 +1,30 @@
 module.exports = {
-  iscommand: function () {
+  check: function (permjson, message, command) {
+    //check if perm system is enabled
+    if (permjson.permsenabled == false) return 1;
 
-  },
-  
+    var checkinarray = function(array, veriable) {
+      var isinarray = false;
+      for (var i = 0; i < array.length; i++) {
+        if (array[i] == veriable) {
+          isinarray = true;
+          break;
+        }
+      }
+      if (isinarray == true) return 1;
+      return 0;
+    };
+    //check if command is disabled
+    if (checkinarray(permjson.disabledcommads, command) == 1) return 0;
+    //check if user is banned from using commands
+    if (checkinarray(permjson.noidperm, message.author.id) == 1) return 0;
+    //check if command is global
+    if (checkinarray(permjson.globalcommands, command) == 1) return 1;
+    //check if user has full perm
+    if (checkinarray(permjson.Fullidperm, message.author.id) == 1) return 1;
+    
+
+    //if nothing works just block them lmao
+    return 0;
+  }
 };

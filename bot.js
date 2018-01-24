@@ -5,6 +5,10 @@ const fs = require("fs");
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
 const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
+//perms stuffs
+const permjson = require("./Data/perms.json");
+const perm = require("./Data/src/Perms.js");
+
 // check if setup was compleate
 if (config.donesetup == "no") {
   console.error("Setup not correct please correct kthx bai");
@@ -100,7 +104,7 @@ fs.readdir("./Data/src/Events/Discord/", (err, files) => {
     let eventName = file.split(".")[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
     client.on(eventName, (...args) => eventFunction.run(Discord, client, config, UserChallangejson, ...args));
-  })
+  });
 });
 
 //power
@@ -155,6 +159,9 @@ client.on("message", (message) => {
   const rawargs = message.content;
   var remove = config.prefix + command + " ";
   const rawargs2 = rawargs.replace(remove, "");
+
+  //perms
+  if (perm.check(permjson, message, command) == 0) return; 
 
   //eval command from anidiotsguide
   if (message.content.startsWith(config.prefix + "eval")) {
