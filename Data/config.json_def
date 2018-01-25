@@ -3,5 +3,5 @@
   "discordtoken": "----",
   "prefix": "?",
   "currentgame": "air",
-  "updatestartup": "False"
+  "updatestartup": "False",
 }

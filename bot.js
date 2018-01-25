@@ -1,3 +1,13 @@
+require("./Data/src/rootblock.js");
+//terminal stuffs
+require("console-stamp")(console, {
+  pattern: "HH:MM:ss",
+  colors: {
+    stamp: "yellow",
+    label: "white",
+  }
+});
+
 //datastufs
 let config = require("./Data/config.json");
 const Scriptpath = __dirname;
