@@ -109,6 +109,7 @@ process.on("SIGINT", function () {
   process.exit(4);
 });
 
+//autoscript
 client.on("message", (message) => {
   let xD404 = require("./Data/src/404.js");
   // Exit and stop if it's not there
