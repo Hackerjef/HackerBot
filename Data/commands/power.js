@@ -1,4 +1,4 @@
-exports.run = (Discord, client, message, type) => {
+exports.run = (console, Discord, client, message, type) => {
   if (type == "shutdownforce") {
     client.destory();
     process.exit(4);

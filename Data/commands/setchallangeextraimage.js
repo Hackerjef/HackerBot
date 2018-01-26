@@ -1,4 +1,4 @@
-exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange) => {
+exports.run = (console, Discord, client, message, args, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange) => {
   var request = require("request");
   var types = {
     jpg: "ffd8ffe0",

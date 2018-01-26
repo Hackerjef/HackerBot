@@ -1,5 +1,5 @@
 module.exports = {
-  check: function (permjson, message, command) {
+  check: function (console, permjson, message, command) {
     //check if perm system is enabled
     if (permjson.permsenabled == false) return 1;
 

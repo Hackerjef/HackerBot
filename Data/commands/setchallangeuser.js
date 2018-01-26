@@ -1,4 +1,4 @@
-exports.run = (Discord, client, message, args, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange) => {
+exports.run = (console, Discord, client, message, args, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange) => {
   var usr_id = message.mentions.members.first().user.id;
   var usr_pfpurl = message.mentions.members.first().user.displayAvatarURL.replace("?size=2048", "");
   var usr_name = message.mentions.members.first().user.username;

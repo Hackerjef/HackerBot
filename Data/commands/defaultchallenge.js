@@ -1,4 +1,4 @@
-exports.run = (Discord, client, message, args, DefaultChallangejson) => {
+exports.run = (console, Discord, client, message, args, DefaultChallangejson) => {
   const embed = new Discord.RichEmbed()
     .setTitle("__Map Name__ » " + DefaultChallangejson.set.mapname)
     .setAuthor("Challange Number " + DefaultChallangejson.set.challangenumber.number, DefaultChallangejson.set.challangenumber.filename)

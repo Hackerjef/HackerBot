@@ -1,12 +1,5 @@
+const console = require("./Data/src/terminal.js"); // eslint-disable-line no-global-assign
 require("./Data/src/rootblock.js");
-//terminal stuffs
-require("console-stamp")(console, {
-  pattern: "HH:MM:ss",
-  colors: {
-    stamp: "yellow",
-    label: "white",
-  }
-});
 
 //datastufs
 let config = require("./Data/config.json");
@@ -105,7 +98,7 @@ fs.readdir("./Data/src/Events/Discord/", (err, files) => {
     let eventFunction = require(`./Data/src/Events/Discord/${file}`);
     let eventName = file.split(".")[0];
     // super-secret recipe to call events with all their proper arguments *after* the `client` var.
-    client.on(eventName, (...args) => eventFunction.run(Discord, client, config, UserChallangejson, ...args));
+    client.on(eventName, (...args) => eventFunction.run(console, Discord, client, config, UserChallangejson, ...args));
   });
 });
 
@@ -135,27 +128,29 @@ client.on("message", (message) => {
 
   //check if command file exists
   if (!fs.existsSync(`./Data/commands/${command}.js`)) {
+    console.command(command, message, 0);
     message.react("❌");
     if (message.author.id == "104376018222972928") {
       message.channel.send("!weenie <@104376018222972928>");
     }
     return;
   }
-
   //perms
-  if (perm.check(permjson, message, command) == 0) {
+  if (perm.check(console, permjson, message, command) == 0) {
     message.react("❌");
+    console.command(command, message, 0);
     return;
   }
+  console.command(command, message, 1);
 
   //run command
   try {
     let commandFile = require(`./Data/commands/${command}.js`);
-    commandFile.run(Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath, setgamepresence);
+    commandFile.run(console, Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath, setgamepresence);
   } catch (err) {
     //command error
     console.error(err);
-    xD404.run(client, message, err);
+    xD404.run(console, client, message, err);
   }
 });
 

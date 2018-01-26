@@ -1,3 +1,3 @@
-exports.run = (Discord, client, message) => {
+exports.run = (console, Discord, client, message) => {
   message.reply("dab on the haters!");
 };

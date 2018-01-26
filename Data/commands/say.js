@@ -1,3 +1,3 @@
-exports.run = (Discord, client, message, args) => {
+exports.run = (console, Discord, client, message, args) => {
   message.channel.send(args);
 };

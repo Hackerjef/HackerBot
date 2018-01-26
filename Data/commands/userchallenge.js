@@ -1,4 +1,4 @@
-exports.run = (Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath) => {
+exports.run = (console, Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath) => {
 
   //require and get things
   var userchallange = require(UserChallangejson);

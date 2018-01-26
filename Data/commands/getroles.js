@@ -1,4 +1,4 @@
-exports.run = (Discord, client, message) => {
+exports.run = (console, Discord, client, message) => {
   var discordrolesarray = message.channel.guild.roles.array();
   var i;
   var output;
