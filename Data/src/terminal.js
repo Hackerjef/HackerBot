@@ -15,6 +15,13 @@ exports.error = function (msg) {
   var chalk = require("chalk");
   console.error(chalk.red(msg));
 };
+exports.trace = function (msg) {
+  var chalk = require("chalk");
+  console.trace(chalk.red(msg));
+};
+exports.clear = function () {
+  console.clear();
+};
 exports.command = function (command, message, permtype) { 
   var chalk = require("chalk");
   var perm;

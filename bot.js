@@ -8,6 +8,13 @@ const fs = require("fs");
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
 const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
+//wit
+const { Wit, log } = require("node-wit");
+const witclient = new Wit({
+  accessToken: config.witaitoken,
+  logger: new log.Logger(log.DEBUG) // optional
+});
+
 //perms stuffs
 const permjson = require("./Data/perms.json");
 const perm = require("./Data/src/Perms.js");
@@ -109,6 +116,12 @@ process.on("SIGINT", function () {
   process.exit(4);
 });
 
+//loging perp
+client.on("error", (e) => console.error(e));
+client.on("warn", (e) => console.warn(e));
+//client.on("debug", (e) => console.info(e));
+
+
 //autoscript
 client.on("message", (message) => {
   let xD404 = require("./Data/src/404.js");
@@ -154,5 +167,23 @@ client.on("message", (message) => {
     xD404.run(console, client, message, err);
   }
 });
+
+// //ONLY FOR MENTIONS
+// client.on("message", (message) => {
+//   if (!message.mentions.users.exists("id",client.user.id)) return;
+//   if (message.author.bot) {
+//     message.channel.send("I dont listen to you.");
+//     return;
+//   }
+//   //wit.ai stuff
+//   var clientmsg = message.content;
+//   clientmsg = clientmsg.replace("<@!394996632422449153> ","");
+//   //console.info(clientmsg);
+//   witclient.message(clientmsg, {})
+//     .then((data) => {
+//       console.log("Yay, got Wit.ai response: " + JSON.stringify(data));
+//       message.reply(data);
+//     });
+// });
 
 client.login(config.discordtoken);
