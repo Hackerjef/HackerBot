@@ -1,5 +1,5 @@
 {
-  "name": "challangebot",
+  "name": "Hackerbot",
   "version": "0.0.69",
   "description": "bot for discord",
   "main": "bot.js",
