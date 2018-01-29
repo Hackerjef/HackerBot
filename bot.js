@@ -179,15 +179,16 @@ client.on("message", (message) => {
   //wit.ai stuff
   var clientmsg = message.content;
   clientmsg = clientmsg.replace("<@!394996632422449153> ","");
-  console.info(clientmsg);
   witclient.message(clientmsg, {})
     .then((data) => {
       witproccess(JSON.stringify(data));
     })
     .catch(console.error);
-  var witproccess = function(data) {
-    var jsonstring = data.entities.intent[1].value;
-    message.reply("wit.ai: `" + jsonstring + "`");
+  var witproccess = function (jsondata) {
+    var obj = JSON.parse(jsondata);
+    var value = obj.entities.intent[0].value;
+    message.reply("wit.ai response value: `" + value + "`");
+    //https://www.w3schools.com/js/js_switch.asp do something like this
   };
 });
 
