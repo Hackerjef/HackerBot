@@ -19,6 +19,7 @@
     "sudo-block": "^2.0.0",
     "timer.js": "^1.0.4",
     "update-json-file": "^1.1.1",
+    "wildstring": "^1.0.9",
     "zlib-sync": "^0.1.4"
   }
 }

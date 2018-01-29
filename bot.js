@@ -1,11 +1,14 @@
 const console = require("./Data/src/js/terminal.js"); // eslint-disable-line no-global-assign
 const writechallange = require("./Data/src/js/writechallange.js");
+const botcommand = require("./Data/src/js/botcommand.js");
+const responces = require("./Data/src/js/responces.js");
 require("./Data/src/js/rootblock.js");
 
 //datastufs
 let config = require("./Data/config.json");
 const Scriptpath = __dirname;
 const fs = require("fs");
+const wildstring = require("wildstring");
 const DefaultChallangejson = require("./Data/src/defaultchallange.json");
 const UserChallangejson = Scriptpath + "/Data/Userchallange.json";
 
@@ -119,10 +122,6 @@ client.on("error", (e) => console.error(e));
 client.on("warn", (e) => console.warn(e));
 //client.on("debug", (e) => console.info(e));
 
-//Generate help file
-
-
-
 //autoscript
 client.on("message", (message) => {
   let xD404 = require("./Data/src/js/404.js");
@@ -179,6 +178,7 @@ client.on("message", (message) => {
   //wit.ai stuff
   var clientmsg = message.content;
   clientmsg = clientmsg.replace("<@!394996632422449153> ","");
+  clientmsg = clientmsg.replace("<@394996632422449153> ", "");
   witclient.message(clientmsg, {})
     .then((data) => {
       witproccess(JSON.stringify(data));
@@ -187,8 +187,23 @@ client.on("message", (message) => {
   var witproccess = function (jsondata) {
     var obj = JSON.parse(jsondata);
     var value = obj.entities.intent[0].value;
-    message.reply("wit.ai response value: `" + value + "`");
-    //https://www.w3schools.com/js/js_switch.asp do something like this
+    //check if their was a responce to begin with
+    if (value == undefined) {
+      message.reply(responces.idk());
+      console.warn("no responce from wit.ai");
+      return;
+    }
+    ////check if its a botcommand
+    //if (wildstring.match("bot*", value)) {
+    //  value = value.toLowerCase();
+    //  botcommand(value.replace("bot", ""));
+    //  return;
+    //}
+    //other stuff
+    switch (value) {
+    default:
+      message.reply(responces.idk());
+    }
   };
 });
 
