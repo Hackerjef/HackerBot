@@ -169,22 +169,27 @@ client.on("message", (message) => {
   }
 });
 
-// //ONLY FOR MENTIONS
-// client.on("message", (message) => {
-//   if (!message.mentions.users.exists("id",client.user.id)) return;
-//   if (message.author.bot) {
-//     message.channel.send("I dont listen to you.");
-//     return;
-//   }
-//   //wit.ai stuff
-//   var clientmsg = message.content;
-//   clientmsg = clientmsg.replace("<@!394996632422449153> ","");
-//   //console.info(clientmsg);
-//   witclient.message(clientmsg, {})
-//     .then((data) => {
-//       console.log("Yay, got Wit.ai response: " + JSON.stringify(data));
-//       message.reply(data);
-//     });
-// });
+//ONLY FOR MENTIONS
+client.on("message", (message) => {
+  if (!message.mentions.users.exists("id",client.user.id)) return;
+  if (message.author.bot) {
+    message.channel.send("I dont listen to you.");
+    return;
+  }
+  //wit.ai stuff
+  var clientmsg = message.content;
+  clientmsg = clientmsg.replace("<@!394996632422449153> ","");
+  console.info(clientmsg);
+  witclient.message(clientmsg, {})
+    .then((data) => {
+      witproccess(JSON.stringify(data));
+    })
+    .catch(console.error);
+  var witproccess = function(data) {
+    var jsonstring = data.entities.intent[1].value;
+    message.reply("wit.ai: `" + jsonstring + "`");
+  };
+});
 
+//login to the bot
 client.login(config.discordtoken);
