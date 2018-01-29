@@ -1,6 +1,5 @@
 const console = require("./Data/src/js/terminal.js"); // eslint-disable-line no-global-assign
 const writechallange = require("./Data/src/js/writechallange.js");
-const botcommand = require("./Data/src/js/botcommand.js");
 const responces = require("./Data/src/js/responces.js");
 require("./Data/src/js/rootblock.js");
 
@@ -193,12 +192,12 @@ client.on("message", (message) => {
       console.warn("no responce from wit.ai");
       return;
     }
-    ////check if its a botcommand
-    //if (wildstring.match("bot*", value)) {
-    //  value = value.toLowerCase();
-    //  botcommand(value.replace("bot", ""));
-    //  return;
-    //}
+    //check if its a botcommand
+    if (wildstring.match("bot*", value)) {
+      value = value.toLowerCase();
+      message.reply("this is not finnished yet");
+      return;
+    }
     //other stuff
     switch (value) {
     default:
