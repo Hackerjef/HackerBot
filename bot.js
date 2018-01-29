@@ -1,5 +1,6 @@
-const console = require("./Data/src/terminal.js"); // eslint-disable-line no-global-assign
-require("./Data/src/rootblock.js");
+const console = require("./Data/src/js/terminal.js"); // eslint-disable-line no-global-assign
+const writechallange = require("./Data/src/js/writechallange.js");
+require("./Data/src/js/rootblock.js");
 
 //datastufs
 let config = require("./Data/config.json");
@@ -17,7 +18,7 @@ const witclient = new Wit({
 
 //perms stuffs
 const permjson = require("./Data/perms.json");
-const perm = require("./Data/src/Perms.js");
+const perm = require("./Data/src/js/Perms.js");
 
 // check if setup was compleate
 if (config.donesetup == "False") {
@@ -81,9 +82,6 @@ var myTimer = new Timer({
   tick: 1,
 });
 
-//functions for writing to user chalange
-const writechallange = require("./Data/src/writechallange.js");
-
 // set game status
 var setgamepresence = function(game) {
   const updateJsonFile = require("update-json-file");
@@ -121,10 +119,13 @@ client.on("error", (e) => console.error(e));
 client.on("warn", (e) => console.warn(e));
 //client.on("debug", (e) => console.info(e));
 
+//Generate help file
+
+
 
 //autoscript
 client.on("message", (message) => {
-  let xD404 = require("./Data/src/404.js");
+  let xD404 = require("./Data/src/js/404.js");
   // Exit and stop if it's not there
   if (!message.content.startsWith(config.prefix)) return;
 
