@@ -159,7 +159,7 @@ client.on("message", (message) => {
   //run command
   try {
     let commandFile = require(`./Data/commands/${command}.js`);
-    commandFile.run(console, Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath, setgamepresence);
+    commandFile.run(console, Discord, client, message, rawargs2, DefaultChallangejson, UserChallangejson, purgeCache, myTimer, writechallange, Scriptpath, setgamepresence, perm, permjson);
   } catch (err) {
     //command error
     console.error(err);
