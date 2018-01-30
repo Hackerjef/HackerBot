@@ -87,23 +87,19 @@ module.exports = {
     } else if (checkinarray(permjson.userpermgroups.usergroupnames, type) == 1) {
       data = {};
       data["groupname"] = type;
-      data["ids"] = [];
+      data["users"] = [];
       data["groupcommands"] = [];
       for (var iaaa = 0; iaaa < permjson.userpermgroups[type].commands.length; iaaa++) {
         data["groupcommands"].push(permjson.userpermgroups[type].commands[iaaa]);
       }
       for (var iaaaa = 0; iaaaa < permjson.userpermgroups[type].ids.length; iaaaa++) {
-        //permjson.userpermgroups[type].ids[i]
         //data["users"].push(user + discrim);
-        client.fetchUser(permjson.userpermgroups[type].ids[iaaaa]).then(user => {
-          console.log(user.username)
-        });
-        // var userend = User.username + "#" + User.discriminator;
-        //data["ids"].push(userend);
+        //permjson.userpermgroups[type].ids[iaaaa]
+        data["users"].push("<@" + permjson.userpermgroups[type].ids[iaaaa] + ">");
       }
       return data;
     }
-    //send
+    //send.
     return ["invalid group given"];
   }
 };
