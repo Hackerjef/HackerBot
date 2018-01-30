@@ -65,23 +65,23 @@ module.exports = {
       data = {};
       data["fullperm"] = [];
       for (var i = 0; i < permjson.Fullidperm.length; i++) {
-        data["fullperm"].push(permjson.Fullidperm[i]);
+        data["fullperm"].push(permjson.Fullidperm[i] + " ");
       }
       return data;
     } else if (type == "noperm") {
       data = {};
       data["noperm"] = [];
       for (var ia = 0; ia < permjson.noidperm.length; ia++) {
-        data["noperm"].push(permjson.noidperm[ia]);
+        data["noperm"].push(permjson.noidperm[ia] + " ");
       }
       return data;
     } else if (checkinarray(permjson.permgroups.groupnames, type) == 1) {
       data = {};
       data["groupname"] = type;
-      data["groupid"] = permjson.permgroups[type].id;
+      data["users"] = permjson.permgroups[type].id;
       data["groupcommands"] = [];
       for (var iaa = 0; iaa < permjson.permgroups[type].commands.length; iaa++) {
-        data["groupcommands"].push(permjson.permgroups[type].commands[iaa]);
+        data["groupcommands"].push(permjson.permgroups[type].commands[iaa] + " ");
       }
       return data;
     } else if (checkinarray(permjson.userpermgroups.usergroupnames, type) == 1) {
@@ -90,12 +90,12 @@ module.exports = {
       data["users"] = [];
       data["groupcommands"] = [];
       for (var iaaa = 0; iaaa < permjson.userpermgroups[type].commands.length; iaaa++) {
-        data["groupcommands"].push(permjson.userpermgroups[type].commands[iaaa]);
+        data["groupcommands"].push(permjson.userpermgroups[type].commands[iaaa] + " ");
       }
       for (var iaaaa = 0; iaaaa < permjson.userpermgroups[type].ids.length; iaaaa++) {
         //data["users"].push(user + discrim);
         //permjson.userpermgroups[type].ids[iaaaa]
-        data["users"].push("<@" + permjson.userpermgroups[type].ids[iaaaa] + ">");
+        data["users"].push("<@" + permjson.userpermgroups[type].ids[iaaaa] + ">\n");
       }
       return data;
     }
