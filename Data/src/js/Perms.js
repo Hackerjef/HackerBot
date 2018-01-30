@@ -29,6 +29,13 @@ module.exports = {
       var groupname = permjson.permgroups.groupnames[i];
       if (message.member.roles.has(permjson.permgroups[groupname].id) && checkinarray(permjson.permgroups[groupname].commands, command) == 1) return 1;
     }
+
+    //user stuff
+    for (var ai = 0; ai < permjson.userpermgroups.usergroupnames.length; ai++) {
+      var usergroupname = permjson.userpermgroups.usergroupnames[ai];
+      if (checkinarray(permjson.userpermgroups[usergroupname].id, message.author.id) == 1 && checkinarray(permjson.userpermgroups[usergroupname].commands, command) == 1) return 1;
+    }
+
     //if nothing works just block them lmao
     return 0;
   }
